@@ -1,8 +1,7 @@
 var connect = require('connect'),
   path = require('path'),
   docco = require('./lib/connect-docco'),
-  fs = require('fs'),
-  log = new (require('socket.io/lib/logger'))();
+  fs = require('fs');
 
 // Default configuration object.
 var conf = { port: 8082, dirname: process.cwd()};
@@ -40,6 +39,6 @@ app
 
   .listen(conf.port);
 
-process.on('uncaughtException', log.error.bind(log));
+process.on('uncaughtException', console.error.bind(console.error));
 
-log.info('Serving ', conf.dirname, 'files... Started on localhost:', conf.port);
+console.info('Serving ', conf.dirname, 'files... Started on localhost:', conf.port);

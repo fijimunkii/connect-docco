@@ -5,13 +5,8 @@ Bringing the literate programing tool [Docco] to [Connect][].
 The idea is just to generate documentation dynamically upon request,
 which is quite handy during development.
 
-**New Hot Stuff:** Docco + [Socket.io] + [watch] = Save file →
-documentation page updates automatically.
-
 [docco]: http://jashkenas.github.com/docco/
 [connect]: http://senchalabs.github.com/connect/
-[socket.io]: http://socket.io/
-[watch]: https://github.com/mikeal/watch
 
 ## Installation
 
@@ -42,19 +37,3 @@ The middleware handles any Docco-compatible extension (`.coffee`,
 when the `?raw` query string parameter is given, should you wish to use it:
 
     http://localhost:8082/some/file.js?raw
-
-## socket.io + watch
-
-If given a Connect (or Express) application, the Docco middleware will
-watch for file changes using [watch] and emit changes over [socket.io]:
-
-    var app = connect.createServer();
-
-    app
-      .use(connect.logger())
-      .use(docco(__dirname, { app: app }))
-      .use(connect.directory(__dirname))
-      .use(connect.static(__dirname))
-      .listen(process.env.PORT);
-
-This is basic, but ends up working pretty well.
